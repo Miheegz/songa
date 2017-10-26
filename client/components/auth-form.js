@@ -30,18 +30,22 @@ const AuthForm = (props) => {
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="green" textAlign="center">
-          <Image src="../images/login.png" />
-          {' '}Log-in to your account
+         <Image src="../images/login.png" height= "10em" width = "2.5em" floated="left"  />
+          {' '}{displayName === 'Login' ? 'Login to your Account' : 'Sign-up for an Account' }
         </Header>
         <Form size="large" onSubmit={handleSubmit} name={name}>
-          <Segment stacked>
+          <Segment stacked style = {{width: '100%' }} >
+          <Form.Group>
             <Form.Input
               fluid
               icon="user"
               iconPosition="left"
               placeholder="E-mail address"
               name = "email"
+              width= {15}
             />
+            </Form.Group>
+            <Form.Group>
             <Form.Input
               fluid
               icon="lock"
@@ -49,10 +53,10 @@ const AuthForm = (props) => {
               placeholder="Password"
               type="password"
               name = "password"
+              width= {15}
             />
-
+            </Form.Group>
             <Button color="green" fluid size="large">{displayName}</Button>
-
             {error && error.response && <div> {error.response.data} </div>}
           </Segment>
         </Form>

@@ -28,7 +28,7 @@ const Navbar = (props) => {
 
     <Menu fixed="top" size="large">
     <Container>
-      <Menu.Item as={Link} to="/home" active>Home</Menu.Item>
+      <Menu.Item as={Link} to="/" active>Home</Menu.Item>
 
       <Dropdown item text= "Shop">
         <Dropdown.Menu>

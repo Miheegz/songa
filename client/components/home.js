@@ -15,6 +15,10 @@ import {
   Dropdown
 } from 'semantic-ui-react'
 import Navbar from './navbar'
+import MainNav from './mainNav'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import { logout } from '../store';
 
 // const FixedMenu = () => (
 //   <Menu fixed="top" size="large">
@@ -35,7 +39,7 @@ import Navbar from './navbar'
 //   </Menu>
 // )
 
-export default class HomepageLayout extends Component {
+class HomepageLayout extends Component {
   constructor(props){
     super(props);
   this.state = {
@@ -51,6 +55,7 @@ showFixedMenu = () => this.setState({ visible: true })
 render() {
   const { visible } = this.state
   const { logOut, isLoggedIn } = this.props
+  console.log("LOGGED IN", isLoggedIn)
     return (
       <div>
         { visible ? <Navbar /> : null }
@@ -63,56 +68,10 @@ render() {
           <Segment
             inverted
             textAlign="center"
-            style={{ minHeight: 700, padding: '1em 0em' }}
+            style={{ minHeight: 700, padding: '1em 0em', backgroundImage: "url(../images/rwanda.jpg)", backgroundRepeat:"no-repeat", backgroundSize:"100% 100%" }}
             vertical
           >
 
-          <Container>
-          <Menu inverted pointing secondary size="large">
-            <Menu.Item as={Link} to="/home" active>Home</Menu.Item>
-
-            <Dropdown item text= "Shop">
-              <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/clothing">Clothing</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/homeliving">Home + Living</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/art">Art + Collectibles </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/jewelry">Jewelry</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/handcrafted">Handcrafted</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown item text= "Event Planning">
-              <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/wedding">Weddings + Parties</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/decorations">Decorations</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Menu.Item as={Link} to="/afrique">Cadeaux d'Afrique</Menu.Item>
-            <Menu.Item as={Link} to="/gakwaya">Abbey Straton Gakwaya Foundation</Menu.Item>
-
-
-            {
-              isLoggedIn
-                ?
-                <Menu.Menu position="right">
-                <Menu.Item>
-                  <Button as={Link} to="/" primary onClick={logOut}>Logout</Button>
-                </Menu.Item>
-                </Menu.Menu>
-              :
-              <Menu.Menu position="right">
-              <Menu.Item className="item">
-                <Button as={Link} to="/login" inverted>Log in</Button>
-              </Menu.Item>
-              <Menu.Item>
-                <Button as={Link} to="/signup" inverted style={{ marginLeft: '0.5em' }}>Sign Up</Button>
-              </Menu.Item>
-              </Menu.Menu>
-
-              }
-
-
-              </Menu>
-          </Container>
 
             <Container text>
               <Header
@@ -241,4 +200,26 @@ render() {
       </div>
     )
   }
+}
+
+const mapState = (state) => {
+  return {
+    isLoggedIn: !!state.user.id
+  }
+}
+
+
+const mapDispatch = dispatch => ({
+  logOut: () => {
+    console.log('You signed out. Sorta.');
+    dispatch(logout())
+    // browserHistory.push('/');
+  }
+});
+
+export default connect(mapState, mapDispatch)(HomepageLayout);
+
+HomepageLayout.propTypes = {
+  logOut: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 }

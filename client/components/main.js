@@ -2,9 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {logout} from '../store'
-import Navbar from './navbar'
-
+import MainNav from './mainNav'
+import {
+  Header,
+  Icon,
+  Image
+} from 'semantic-ui-react'
 /**
  * COMPONENT
  *  The Main component is our 'picture frame' - it displays the navbar and anything
@@ -16,11 +19,8 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1>Songa</h1>
 
-
-
-      <hr />
+<MainNav />
       {children}
     </div>
   )
