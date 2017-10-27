@@ -35,7 +35,7 @@ const MainNav = (props) => {
     <Container>
 
       <Menu inverted pointing secondary size="large">
-        <Header as="h1" color="green" size="massive" textAlign="left" style={{ fontSize: '2em', marginBottom: 0, marginTop: '.5em', marginRight: '1cm', marginLeft: '-3cm' }} >Songa    </Header>
+        <Header as="h1" color="green" size="huge" textAlign="left" style={{ fontSize: '2em', marginBottom: 0, marginTop: '.5em', marginRight: '1cm', marginLeft: '-3cm' }} >Songa    </Header>
         <Menu.Item as={Link} to="/" active margin-left="2cm" >Home</Menu.Item>
 
         <Dropdown item text="Shop">

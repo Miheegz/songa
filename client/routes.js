@@ -5,7 +5,8 @@ import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome, homepageLayout} from './components'
-import {me} from './store'
+import ProductList from './components/productList'
+import {me, fetchProducts, fetchCart} from './store'
 
 /**
  * COMPONENT
@@ -17,7 +18,11 @@ class Routes extends Component {
 
   render () {
     const {isLoggedIn} = this.props
-
+    const clothing = 'clothing'
+    const handcrafted = 'handcrafted'
+    const homeliving = 'homeliving'
+    const art = 'art'
+    const jewelry = 'jewelry'
     return (
       <Router history={history}>
         <Main>
@@ -26,11 +31,16 @@ class Routes extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/" component= {homepageLayout} />
+            <Route exact path="/clothing" component = {ProductList} catergory ={clothing} />
+            <Route exact path="/handcrafted" component = {ProductList} catergory ={handcrafted} />
+            <Route exact path="/homeliving" component = {ProductList} catergory ={homeliving} />
+            <Route exact path="/art" component = {ProductList} catergory ={art} />
+            <Route exact path="/jewelry" component = {ProductList} catergory ={jewelry} />
             {
               isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
+                  <Route path="/me" component={UserHome} />
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
@@ -57,6 +67,8 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(fetchProducts())
+      dispatch(fetchCart())
     }
   }
 }

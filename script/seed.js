@@ -11,7 +11,7 @@
  */
 const db = require('../server/db')
 const {User} = require('../server/db/models')
-
+const Product = require('../server/db/models/product')
 async function seed () {
   await db.sync({force: true})
   console.log('db synced!')
@@ -21,6 +21,15 @@ async function seed () {
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
+  ])
+  const products = await Promise.all([
+    Product.create({name: 'basket', price: '23', catergory: 'handcrafted', picture: '../images/IMG_4835.jpg' }),
+    Product.create({name: 'baskets', price: '33', catergory: 'handcrafted', picture: '../images/IMG_4836.jpg'}),
+    Product.create({name: 'baskets', price: '43', catergory: 'handcrafted', picture: '../images/IMG_4837.jpg'}),
+    Product.create({name: 'baskets', price: '53', catergory: 'handcrafted', picture: '../images/IMG_4838.jpg'}),
+    Product.create({name: 'Shirt', price: '53', catergory: 'clothing', picture: '../images/IMG_4839.jpg'}),
+    Product.create({name: 'Dress', price: '53', catergory: 'clothing', picture: '../images/IMG_4840.jpg'}),
+    Product.create({name: 'Dress', price: '53', catergory: 'clothing', picture: '../images/IMG_4841.jpg'})
   ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
