@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, homepageLayout} from './components'
+import {Main, Login, Signup, UserHome, homepageLayout, Cart} from './components'
 import ProductList from './components/productList'
 import {me, fetchProducts, fetchCart} from './store'
 
@@ -36,6 +36,7 @@ class Routes extends Component {
             <Route exact path="/homeliving" component = {ProductList} catergory ={homeliving} />
             <Route exact path="/art" component = {ProductList} catergory ={art} />
             <Route exact path="/jewelry" component = {ProductList} catergory ={jewelry} />
+            <Route exact path ="/cart" component = {Cart} />
             {
               isLoggedIn &&
                 <Switch>
