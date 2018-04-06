@@ -4,7 +4,7 @@ const Product = require('../db/models/product')
 module.exports = router
 
 
-router.get('/cart', (req, res, next) => {
+router.get('/', (req, res, next) => {
 
   const userId = req.user.id
   console.log('USERRRRR', userId)
